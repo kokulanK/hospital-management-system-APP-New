@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Large model files (add any others you have)
+*.keras
+*.h5
+*.pkl
+*.pb
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Uploaded files (if you store them locally)
+uploads/
