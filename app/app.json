@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Hospital Management System",
+    "slug": "hospital-management-system",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.hospital"
+    },
+    "android": {
+      "package": "com.yourcompany.hospital"
+    },
+    "web": {},
+    "extra": {
+      "apiUrl": "https://hospital-backend-myqc.onrender.com/api"
+    }
+  }
+}
