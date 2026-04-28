@@ -6,109 +6,110 @@
     Live Backend: https://hospital-backend-myqc.onrender.com/api
     AI Service: Deployed on Hugging Face (see details below) – provides skin image analysis with a Gatekeeper + Classifier.
 
+
 📸 Screenshots
 
     The following screenshots illustrate the key features and interfaces of the application.
 
 ---
 
-    🔐 Authentication & Registration
+        🔐 Authentication & Registration
 
-        Login Screen
+            Login Screen
 
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/ec3a3273-1b1e-4b17-ae18-ed4250c9087c" alt="Login Screen" width="300"/>
-            </p>
-
----
-
-        Patient Registration
-
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/1a70b347-988f-4677-8587-249c7eb7ae96" alt="Patient Registration" width="300"/>
-            </p>
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/ec3a3273-1b1e-4b17-ae18-ed4250c9087c" alt="Login Screen" width="300"/>
+                </p>
 
 ---
 
-        Doctor Registration
+            Patient Registration
 
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/7b99d5a8-6e42-4e81-ba40-ab262abe36df" alt="Doctor Registration" width="300"/>
-            </p>
-
----
-
-        Receptionist Registration
-
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/57d8ad04-ef45-453a-8ad0-844ea63257ad" alt="Receptionist Registration" width="300"/>
-            </p>
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/1a70b347-988f-4677-8587-249c7eb7ae96" alt="Patient Registration" width="300"/>
+                </p>
 
 ---
 
-        Lab Technician Registration
+            Doctor Registration
 
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/2b5e9492-f862-4f82-b225-43d40365898d" alt="Lab Technician Registration" width="300"/>
-            </p>
-
----
-
-        Cleaning Staff Registration
-
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/f98b5b4f-1766-43b6-bcf7-c191ae86c35a" alt="Cleaning Staff Registration" width="300"/>
-            </p>
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/7b99d5a8-6e42-4e81-ba40-ab262abe36df" alt="Doctor Registration" width="300"/>
+                </p>
 
 ---
 
-    🏥 Role-Specific Dashboards
+            Receptionist Registration
 
-        Patient Dashboard
-
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/829ccfb6-e254-4463-864e-d58e9068084d" alt="Patient Dashboard" width="300"/>
-            </p>
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/57d8ad04-ef45-453a-8ad0-844ea63257ad" alt="Receptionist Registration" width="300"/>
+                </p>
 
 ---
 
-        Doctor Dashboard
+            Lab Technician Registration
 
-        <p align="center">
-          <img src="https://github.com/user-attachments/assets/959f8eb3-5a84-49d8-b847-f940dbe648bd" alt="Doctor Dashboard" width="300"/>
-        </p>
-
----
-
-        Receptionist Dashboard
-
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/433c060d-176f-4c3d-ab6e-4ac39b1013fa" alt="Receptionist Dashboard" width="300"/>
-            </p>
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/2b5e9492-f862-4f82-b225-43d40365898d" alt="Lab Technician Registration" width="300"/>
+                </p>
 
 ---
 
-        Lab Technician Dashboard
+            Cleaning Staff Registration
 
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/e7f32275-ed06-4c46-863f-76235e9b3d43" alt="Lab Technician Dashboard" width="300"/>
-            </p>
-
----
-
-        Cleaning Staff Dashboard
-
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/57a56492-2510-45cf-bda6-b11e8444d2d1" alt="Cleaning Staff Dashboard" width="300"/>
-            </p>
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/f98b5b4f-1766-43b6-bcf7-c191ae86c35a" alt="Cleaning Staff Registration" width="300"/>
+                </p>
 
 ---
 
-        Admin Dashboard
+        🏥 Role-Specific Dashboards
 
-            <p align="center">
-              <img src="https://github.com/user-attachments/assets/41a35de5-5f14-4257-b5bd-390457129fea" alt="Admin Dashboard" width="300"/>
-            </p>
+            Patient Dashboard
+
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/829ccfb6-e254-4463-864e-d58e9068084d" alt="Patient Dashboard" width="300"/>
+                </p>
+
+---
+
+            Doctor Dashboard
+
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/959f8eb3-5a84-49d8-b847-f940dbe648bd" alt="Doctor Dashboard" width="300"/>
+                </p>
+
+---
+
+            Receptionist Dashboard
+
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/433c060d-176f-4c3d-ab6e-4ac39b1013fa" alt="Receptionist Dashboard" width="300"/>
+                </p>
+
+---
+
+            Lab Technician Dashboard
+
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/e7f32275-ed06-4c46-863f-76235e9b3d43" alt="Lab Technician Dashboard" width="300"/>
+                </p>
+
+---
+
+            Cleaning Staff Dashboard
+
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/57a56492-2510-45cf-bda6-b11e8444d2d1" alt="Cleaning Staff Dashboard" width="300"/>
+                </p>
+
+---
+
+            Admin Dashboard
+
+                <p align="center">
+                  <img src="https://github.com/user-attachments/assets/41a35de5-5f14-4257-b5bd-390457129fea" alt="Admin Dashboard" width="300"/>
+                </p>
 
 ---
 
@@ -143,7 +144,7 @@
             <p align="center">
               <img src="https://github.com/user-attachments/assets/efff0d1f-9e05-420e-890e-67985e827f40" alt="Hugging Face AI Service" width="900"/>
             </p>
-
+            
 
 🚀 Features
 
