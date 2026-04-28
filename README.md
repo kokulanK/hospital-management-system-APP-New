@@ -1,13 +1,15 @@
-🏥 Hospital Management System – Full Stack Mobile App
+# 🏥 Hospital Management System – Full Stack Mobile App
 
-    A comprehensive hospital management system with role‑based dashboards, AI‑powered skin cancer screening, real‑time appointment scheduling, lab request tracking, cleaning tasks, supply chain management, and multilingual support.
-    Mobile client built with React Native (Expo) and backend with Node.js + Express, MongoDB, and a separate AI microservice for dermoscopic image analysis.
+A comprehensive hospital management system with role-based dashboards, AI-powered skin cancer screening, real-time appointment scheduling, lab request tracking, cleaning tasks, supply chain management, and multilingual support.
 
-    Live Backend: https://hospital-backend-myqc.onrender.com/api
-    AI Service: Deployed on Hugging Face (see details below) – provides skin image analysis with a Gatekeeper + Classifier.
+Mobile client built with React Native (Expo) and backend with Node.js + Express, MongoDB, and a separate AI microservice for dermoscopic image analysis.
 
+**Live Backend:** https://hospital-backend-myqc.onrender.com/api  
+**AI Service:** Deployed on Hugging Face (see details below) – provides skin image analysis with a Gatekeeper + Classifier.
 
-📸 Screenshots
+---
+
+# 📸 Screenshots
 
 The following screenshots illustrate the key features and interfaces of the application.
 
@@ -49,6 +51,8 @@ The following screenshots illustrate the key features and interfaces of the appl
   <img src="https://github.com/user-attachments/assets/f98b5b4f-1766-43b6-bcf7-c191ae86c35a" alt="Cleaning Staff Registration" width="300"/>
 </p>
 
+---
+
 ## 🏥 Role-Specific Dashboards
 
 ### Patient Dashboard
@@ -87,6 +91,8 @@ The following screenshots illustrate the key features and interfaces of the appl
   <img src="https://github.com/user-attachments/assets/41a35de5-5f14-4257-b5bd-390457129fea" alt="Admin Dashboard" width="300"/>
 </p>
 
+---
+
 ## ☁️ Cloud & Deployment
 
 ### MongoDB Atlas
@@ -113,364 +119,302 @@ The following screenshots illustrate the key features and interfaces of the appl
   <img src="https://github.com/user-attachments/assets/efff0d1f-9e05-420e-890e-67985e827f40" alt="Hugging Face AI Service" width="900"/>
 </p>
 
-🚀 Features
+---
 
-  👤 Patient
-  
-    Book / reschedule / cancel appointments (15‑minute slots)
-    
-    View upcoming and past appointments
-    
-    Give star‑rated feedback with comments
-    
-    AI skin scanner – upload photos, get instant risk analysis
-    
-    View lab reports (completed only)
-    
-    Chatbot with AI (OpenAI/Groq) – asks questions about appointments, feedback, skin scans
-    
-    Multilingual UI (English, Sinhala, Tamil)
-    
-    Personalized health tip based on recent activity
+# 🚀 Features
 
-  👨‍⚕️ Doctor
+## 👤 Patient
 
-    Set weekly availability (15‑min granularity)
-    
-    View scheduled appointments, mark as completed/cancelled
-    
-    Read patient feedback & average rating
-    
-    Create lab requests for patients
-    
-    View lab results once completed by lab technician
+- Book / reschedule / cancel appointments (15-minute slots)
+- View upcoming and past appointments
+- Give star-rated feedback with comments
+- AI skin scanner – upload photos, get instant risk analysis
+- View lab reports (completed only)
+- Chatbot with AI (OpenAI/Groq)
+- Multilingual UI (English, Sinhala, Tamil)
+- Personalized health tips
 
-  🖥 Receptionist
+## 👨‍⚕️ Doctor
 
-    Search and create patient accounts on‑the‑fly
-    
-    Book appointments on behalf of patients (auto‑creates patient if not exists)
-    
-    View all appointments (calendar view)
-    
-    Manage cleaning tasks – assign to staff, update status
-    
-    AI Scanner on behalf of patients (upload photo + assign to patient)
+- Set weekly availability
+- View scheduled appointments
+- Read patient feedback & ratings
+- Create lab requests
+- View lab results
 
-  🔬 Lab Technician
+## 🖥 Receptionist
 
-    View pending / accepted / completed lab requests
-    
-    Accept pending requests
-    
-    Upload result files (PDF, image) and add textual results
-    
-    Edit / delete own requests (accepted/completed)
+- Search and create patient accounts
+- Book appointments for patients
+- Calendar appointment management
+- Manage cleaning tasks
+- AI scanner for patients
 
-  🧹 Cleaning Staff
+## 🔬 Lab Technician
 
-    View assigned cleaning tasks (area, date, description)
-    
-    Mark tasks as completed (timestamped)
-    
-    Request cleaning supplies – item, quantity, notes
-    
-    Track request status (pending → approved → delivered)
+- View pending/completed lab requests
+- Accept requests
+- Upload result files
+- Edit/delete own requests
 
-  👑 Admin (Super Admin)
+## 🧹 Cleaning Staff
 
-    Full user management (create, edit, delete – except admins)
-    
-    Approve / reject new registrations for doctor, receptionist, lab tech, cleaning staff
-    
-    View and delete all appointments & feedback
-    
-    Manage cleaning tasks (create, assign, edit, delete)
-    
-    Approve / deliver supply requests
+- View cleaning tasks
+- Mark tasks as completed
+- Request cleaning supplies
+- Track request status
 
-  🤖 AI Skin Scanner (Gatekeeper + Classifier)
-  
-    Rejects non‑skin photos (lighting, blur, no skin)
-    
-    Classifies lesion as Safe or Danger with confidence %
-    
-    Shows uncertainty when confidence < 65%
-    
-    Stores every scan with full AI response; patients and receptionists can view history
+## 👑 Admin
 
-  💬 AI Chatbot
+- Full user management
+- Approve/reject registrations
+- Manage appointments & feedback
+- Manage cleaning tasks
+- Approve supply requests
 
-    Conversational assistant using OpenAI or Groq (Llama 3.3)
-    
-    Provides answers based on patient’s own data (appointments, feedback, scans)
-    
-    Supports text‑to‑speech (Expo Speech) and voice input (optional)
-    
-    Clear chat history button
+## 🤖 AI Skin Scanner
 
-🧱 Tech Stack
+- Rejects non-skin photos
+- Classifies lesion as Safe/Danger
+- Shows confidence percentage
+- Stores scan history
 
-  Layer	Technology
-  
-    Frontend	React Native (Expo) – TypeScript (optional), Tailwind via NativeWind
-    Backend	Node.js, Express, MongoDB (Mongoose)
-    Authentication	JWT (Bearer token)
-    File Storage	Cloudinary (images for skin scans & lab results)
-    AI Service	Python FastAPI / Hugging Face (Gatekeeper + Classifier) – separate repo
-    Deployment	Backend: Render; Frontend: Expo Go / EAS; AI Service: Hugging Face Spaces
-    Database	MongoDB Atlas
-    Real‑time	Not used (standard REST)
-    
-🏗 System Architecture
+## 💬 AI Chatbot
 
-    ┌─────────────────────────────────────────────────────────────────┐
-    │                    React Native Mobile App                      │
-    │  (Patient, Doctor, Receptionist, Lab Tech, Cleaning, Admin)     │
-    └───────────────────────────────┬─────────────────────────────────┘
-                                    │ HTTPS / API
-                                    ▼
-    ┌─────────────────────────────────────────────────────────────────┐
-    │                     Node.js + Express Backend                    │
-    │  (JWT auth, role middleware, REST endpoints)                    │
-    │  ▼ models: User, Appointment, Availability, LabRequest,         │
-    │    Feedback, SkinImage, CleaningTask, SupplyRequest, Chat       │
-    └───────────────┬─────────────────────────────┬───────────────────┘
-                    │                             │
-                    ▼                             ▼
-            ┌──────────────┐              ┌─────────────────┐
-            │ MongoDB Atlas│              │   Cloudinary     │
-            │  (database)  │              │ (image storage)  │
-            └──────────────┘              └────────┬────────┘
-                                                    │
-                                                    ▼
-            ┌──────────────────────────────────────────────────────┐
-            │         AI Microservice (Hugging Face)               │
-            │  - Gatekeeper: reject non‑skin images                │
-            │  - Classifier: predict Danger / Safe + confidence    │
-            └──────────────────────────────────────────────────────┘
+- Uses OpenAI or Groq
+- Answers based on patient data
+- Supports voice input/output
+- Clear chat history
 
-            
-⚙️ Setup Instructions
+---
 
-    Prerequisites
-    Node.js (v18+)
-    
-    MongoDB Atlas account (or local MongoDB)
-    
-    Cloudinary account
-    
-    OpenAI API key or Groq API key
-    
-    Expo CLI (npm install -g expo-cli) or use Expo Go app
-    
-    (Optional) Python environment for AI service – but you can rely on the deployed Hugging Face Space
+# 🧱 Tech Stack
 
-  1. Clone the repository
+| Layer              | Technology                         |
+|--------------------|------------------------------------|
+| Frontend           | React Native (Expo), NativeWind    |
+| Backend            | Node.js, Express, MongoDB          |
+| Authentication     | JWT                                |
+| File Storage       | Cloudinary                         |
+| AI Service         | Python FastAPI / Hugging Face      |
+| Deployment         | Render, Expo, Hugging Face         |
+| Database           | MongoDB Atlas                      |
 
-    git clone https://github.com/your-username/hospital-management-system.git
-    cd hospital-management-system
-    
-  2. Backend Setup
+---
 
-    cd backend
-    npm install
-    
-  Create a .env file in backend/ with the following variables:
+# 🏗 System Architecture
 
-    env
+```text
+┌─────────────────────────────────────────────────────────────┐
+│               React Native Mobile App                      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │ HTTPS / API
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│               Node.js + Express Backend                    │
+└───────────────┬───────────────────────┬─────────────────────┘
+                │                       │
+                ▼                       ▼
+        ┌──────────────┐        ┌────────────────┐
+        │ MongoDB Atlas│        │  Cloudinary    │
+        └──────────────┘        └───────┬────────┘
+                                        ▼
+                    ┌────────────────────────────┐
+                    │ Hugging Face AI Service    │
+                    └────────────────────────────┘
+```
 
-    PORT=5000
-    MONGO_URI=your_mongodb_atlas_connection_string
-    JWT_SECRET=your_jwt_secret
-    SUPER_ADMIN_EMAIL=super@admin.com
-    CLOUDINARY_CLOUD_NAME=your_cloud_name
-    CLOUDINARY_API_KEY=your_api_key
-    CLOUDINARY_API_SECRET=your_api_secret
-    OPENAI_API_KEY=your_openai_key   # or GROQ_API_KEY
-    AI_PROVIDER=openai               # or 'groq'
-    AI_SERVICE_URL=https://your-huggingface-space.hf.space   # skin analysis service
+---
 
+# ⚙️ Setup Instructions
 
-  Then run:
+## Prerequisites
 
-    npm run dev   # or npm start
-    The backend will be available at http://localhost:5000.
+- Node.js (v18+)
+- MongoDB Atlas
+- Cloudinary account
+- OpenAI or Groq API key
+- Expo CLI
 
-  3. Frontend (React Native / Expo)
+---
 
-    cd ../app
-    npm install
+## 1. Clone Repository
 
-  Create a .env file in app/ (or set in app.json extras):
+```bash
+git clone https://github.com/your-username/hospital-management-system.git
+cd hospital-management-system
+```
 
-    env
-  
-    API_URL=https://hospital-backend-myqc.onrender.com/api   # your deployed backend
-    Alternatively, you can modify app/src/api/axios.js to point to your backend IP for local development.
+---
 
-  Then start the Expo development server:
+## 2. Backend Setup
 
-    npm start
-    Scan the QR code with Expo Go (Android) or Camera (iOS) to run the app.
+```bash
+cd backend
+npm install
+```
 
-  4. AI Microservice (Skin Analysis)
+Create `.env`:
 
-    The backend expects an AI service at AI_SERVICE_URL/analyze that accepts { image_url: string } and returns:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+SUPER_ADMIN_EMAIL=super@admin.com
 
-    json
-    
-    {
-      "status": "accepted" | "rejected",
-      "gatekeeper": { "reason": "...", "detail": "..." },
-      "classifier": { "label": "Danger" | "Safe", "confidence": 92.5 }
-    }
-    
-    You can deploy the provided skin-ai service (FastAPI) to Hugging Face Spaces.
-    Update AI_SERVICE_URL in backend .env accordingly.
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 
-  5. Database Initialisation
-     
-    MongoDB Atlas automatically creates collections when first used.
+OPENAI_API_KEY=your_openai_key
+AI_PROVIDER=openai
 
-    Ensure the super admin exists (seed manually or through registration – super admin email is set in .env; only that email can register as admin).
+AI_SERVICE_URL=https://your-huggingface-space.hf.space
+```
 
-🔐 Environment Variables Summary
+Run backend:
 
-Backend (.env)
+```bash
+npm run dev
+```
 
-    Variable	Description
-    PORT	Server port (default 5000)
-    MONGO_URI	MongoDB Atlas connection string
-    JWT_SECRET	Secret for JWT signing
-    SUPER_ADMIN_EMAIL	Email that can register as admin
-    CLOUDINARY_*	Cloudinary credentials for image uploads
-    OPENAI_API_KEY	OpenAI API key (or GROQ_API_KEY)
-    AI_PROVIDER	openai or groq
-    AI_SERVICE_URL	URL of the skin analysis AI service
-    
-  Frontend (.env or app.json extra)
-  
-    Variable	    Description
-    apiUrl	      Backend API base URL (e.g., .../api)
-    
-🚢 Deployment
+---
 
-  Backend on Render
-  
-    Push backend code to GitHub.
-    
-    Create a new Web Service on Render.
-    
-    Set build command: npm install
-    
-    Start command: node server.js (or npm start)
-    
-    Add all environment variables in Render dashboard.
-    
-    Deploy – the backend will be live at https://your-app.onrender.com.
+## 3. Frontend Setup
 
-  AI Service on Hugging Face Spaces
-  
-    Create a new Space (Docker or Gradio).
-    
-    Upload your FastAPI app + requirements.txt.
-    
-    Set environment variables (if any) in Space secrets.
-    
-    The Space URL becomes your AI_SERVICE_URL.
+```bash
+cd ../app
+npm install
+```
 
-  Database – MongoDB Atlas
-  
-    Create a cluster (free tier M0).
+Create `.env`:
 
-    Whitelist all IPs (0.0.0.0/0) for development or restrict to Render IPs.
+```env
+API_URL=https://hospital-backend-myqc.onrender.com/api
+```
 
-    Get the connection string and set MONGO_URI.
+Run Expo:
 
-  Cloudinary
-  
-    Create a Cloudinary account.
+```bash
+npm start
+```
 
-    From dashboard, copy Cloud name, API Key, API Secret.
+---
 
-  Set those in backend .env.
+## 4. AI Microservice
 
-  Frontend (Expo) – No deployment needed for development; for production you can build APK/IPA via EAS Build.
+Expected response:
 
-📚 API Endpoints Overview (Selected)
+```json
+{
+  "status": "accepted",
+  "classifier": {
+    "label": "Danger",
+    "confidence": 92.5
+  }
+}
+```
 
+Deploy FastAPI app to Hugging Face Spaces.
 
-    Method	    Endpoint	                        Access	                  Description
-    POST	      /api/auth/register	              Public	                  Register (patient, doctor, etc)
-    POST	      /api/auth/login	                  Public	                  Login + JWT
-    GET	        /api/admin/users	                Admin	                    List all users
-    PUT	        /api/admin/approve-user/:id	      Admin	                    Approve pending user
-    POST	      /api/appointments	                Patient	                  Book appointment
-    POST	      /api/appointments/receptionist	  Receptionist	            Book for patient (creates if new)
-    GET	        /api/availability/doctor/:id	    Authenticated	            Get available slots for a doctor
-    POST	      /api/skin-images	                Patient/Receptionist	    Upload skin image (AI analysis)
-    GET	        /api/lab-requests/patient	        Patient	                  Get completed lab reports
-    POST	      /api/lab-requests	                Doctor	                  Create lab request
-    PUT	        /api/lab-requests/:id/complete	  LabTechnician	            Upload result file/text
-    GET	        /api/cleaning-tasks/my	          CleaningStaff	            Get my tasks
-    POST	      /api/supply-requests	            CleaningStaff	            Request supplies
-    POST	      /api/chat	                        Patient	                  Send message to AI chatbot
-    GET	        /api/patient/tip	                Patient	                  Get AI‑generated health tip
+---
 
-    For a full list, check the routes/ folder in backend.
+# 🔐 Environment Variables
 
-🧪 Testing Credentials (Example)
+## Backend
 
-  Use these after seeding or registering:
+| Variable           | Description          |
+|--------------------|----------------------|
+| PORT               | Server Port          |
+| MONGO_URI          | MongoDB connection   |
+| JWT_SECRET         | JWT Secret           |
+| AI_SERVICE_URL     | AI service URL       |
 
-    
-    Role	            Email	Password	                   Status
-    Admin (super)	    super@admin.com	admin123	         approved
-    Doctor	          doctor@example.com	doctor123	     approved
-    Patient	          patient@example.com	patient123	   approved
-    Receptionist	    reception@example.com	rec123	     approved
-    Lab Technician	  lab@example.com	lab123	           approved
-    Cleaning Staff	  clean@example.com	clean123	       approved
+## Frontend
 
-  Note: Non‑admin roles initially have status: pending when registering. Admin must approve them before they can log in.
+| Variable     | Description     |
+|--------------|-----------------|
+| API_URL      | Backend API URL |
 
-🤝 Contributing
+---
 
-    Fork the repository.
-    
-    Create a feature branch (git checkout -b feature/amazing).
-    
-    Commit changes (git commit -m 'Add amazing feature').
-    
-    Push to the branch (git push origin feature/amazing).
-    
-    Open a Pull Request.
+# 🚢 Deployment
 
-🙏 Acknowledgements
+## Backend – Render
 
-    OpenAI / Groq for LLM API
-    
-    Hugging Face for hosting AI model
-    
-    Cloudinary for image storage
-    
-    MongoDB Atlas for database
-    
-    Render for backend hosting
-    
-    Expo for React Native toolchain
+- Push backend to GitHub
+- Create Render Web Service
+- Add environment variables
+- Deploy
+
+## Database – MongoDB Atlas
+
+- Create cluster
+- Get connection string
+- Add to `.env`
+
+## Cloudinary
+
+- Create account
+- Copy credentials
+- Add to backend `.env`
+
+---
+
+# 📚 API Endpoints Overview
+
+| Method | Endpoint             | Access    | Description       |
+|--------|----------------------|-----------|-------------------|
+| POST   | /api/auth/register   | Public    | Register user     |
+| POST   | /api/auth/login      | Public    | Login             |
+| GET    | /api/admin/users     | Admin     | Get users         |
+| POST   | /api/appointments    | Patient   | Book appointment  |
+| POST   | /api/chat            | Patient   | AI chatbot        |
+
+---
+
+# 🧪 Testing Credentials
+
+| Role    | Email               | Password     |
+|---------|---------------------|--------------|
+| Admin   | super@admin.com     | admin123     |
+| Doctor  | doctor@example.com  | doctor123    |
+| Patient | patient@example.com | patient123   |
+
+---
+
+# 🤝 Contributing
+
+1. Fork repository
+2. Create branch
+3. Commit changes
+4. Push branch
+5. Open Pull Request
+
+---
+
+# 🙏 Acknowledgements
+
+- OpenAI / Groq
+- Hugging Face
+- Cloudinary
+- MongoDB Atlas
+- Render
+- Expo
+
+---
+
+# ❤️ Team
+
+| Student ID | Name                       |
+|------------|----------------------------|
+| IT24103078 | Liyanaarachchi K L A D B   |
+| IT24100701 | Louis E S                  |
+| IT24100060 | Kokulan K                  |
+| IT24102228 | Welgama W N Y              |
+| IT24101873 | Jesmeen M B A              |
+| IT24101546 | De Silva G H T D           |
+
+---
 
 Made with ❤️ for better healthcare management.
-
-Team 
-
-    Student ID 	        Name  
-    IT24103078 	        Liyanaarachchi K L A D B 
-    IT24100701 	        Louis E S 
-    IT24100060 	        Kokulan K. 
-    IT24102228 	        Welgama W. N. Y 
-    IT24101873 	        Jesmeen M.B.A 
-    IT24101546 	        De Silva G. H. T. D. 
-
-
