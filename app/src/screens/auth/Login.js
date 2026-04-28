@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { useAuth } from '../../../../Final_app/src/contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';  // ✅ fixed import
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
