@@ -375,11 +375,13 @@ Deploy FastAPI app to Hugging Face Spaces.
 
 # 🧪 Testing Credentials
 
-| Role    | Email               | Password     |
-|---------|---------------------|--------------|
-| Admin   | super@admin.com     | admin123     |
-| Doctor  | doctor@example.com  | doctor123    |
-| Patient | patient@example.com | patient123   |
+| Role            | Email                     | Password           |
+|-----------------|---------------------------|--------------------|
+| Admin           | super@admin.com           | admin123           |
+| Doctor          | doctor@example.com        | doctor123          |
+| Patient         | patient@example.com       | patient123         |
+| Receptionist    | Receptionist@example.com  | Receptionist123    |
+| Lab Technician  | labtechnician@example.com | labtechnician123   |
 
 ---
 
