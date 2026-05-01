@@ -1,3 +1,4 @@
+# Testing automatic workflow trigger
 name: Hello World Workflow
 
 on:
