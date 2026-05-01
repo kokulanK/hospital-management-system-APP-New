@@ -6,22 +6,23 @@ import { Ionicons } from '@expo/vector-icons';
 import { getGreeting } from '../../utils/helpers';
 import { useNavigation } from '@react-navigation/native';
 
-export default function CleaningDashboard() {
+export default function LabTechnicianDashboard() {
     const { user } = useAuth();
     const navigation = useNavigation();
-    const [stats, setStats] = useState({ pending: 0, completed: 0 });
+    const [stats, setStats] = useState({ pending: 0, accepted: 0, completed: 0 });
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchTasks();
+        fetchRequests();
     }, []);
 
-    const fetchTasks = async () => {
+    const fetchRequests = async () => {
         try {
-            const { data } = await api.get('/cleaning-tasks/my');
-            const pending = data.filter(t => t.status === 'pending').length;
-            const completed = data.filter(t => t.status === 'completed').length;
-            setStats({ pending, completed });
+            const { data } = await api.get('/lab-requests/lab');
+            const pending = data.filter(r => r.status === 'pending').length;
+            const accepted = data.filter(r => r.status === 'accepted').length;
+            const completed = data.filter(r => r.status === 'completed').length;
+            setStats({ pending, accepted, completed });
         } catch (error) {
             console.error(error);
         } finally {
@@ -29,20 +30,16 @@ export default function CleaningDashboard() {
         }
     };
 
-    const quickActions = [
-        { name: 'My Tasks', icon: 'clipboard', screen: 'Tasks' },
-        { name: 'Request Supplies', icon: 'cube', screen: 'Supplies' },
-    ];
-
     const statCards = [
-        { label: 'Pending Tasks', value: stats.pending, icon: 'time', color: '#f59e0b' },
-        { label: 'Completed', value: stats.completed, icon: 'checkmark-circle', color: '#10b981' },
+        { label: 'Pending', value: stats.pending, icon: 'time', color: '#f59e0b' },
+        { label: 'Accepted', value: stats.accepted, icon: 'checkmark-circle', color: '#3b82f6' },
+        { label: 'Completed', value: stats.completed, icon: 'checkmark-done', color: '#10b981' },
     ];
 
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.greeting}>{getGreeting()}, {user?.name?.split(' ')[0]}</Text>
-            <Text style={styles.subGreeting}>Manage your cleaning tasks and supplies.</Text>
+            <Text style={styles.subGreeting}>Manage lab requests and upload results.</Text>
 
             {loading ? (
                 <ActivityIndicator size="large" color="#3b82f6" style={styles.loader} />
@@ -58,19 +55,12 @@ export default function CleaningDashboard() {
                         ))}
                     </View>
 
-                    <Text style={styles.sectionTitle}>Quick Actions</Text>
-                    <View style={styles.actionsGrid}>
-                        {quickActions.map((action, idx) => (
-                            <TouchableOpacity
-                                key={idx}
-                                style={styles.actionCard}
-                                onPress={() => navigation.navigate(action.screen)}
-                            >
-                                <Ionicons name={action.icon} size={32} color="#3b82f6" />
-                                <Text style={styles.actionLabel}>{action.name}</Text>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
+                    <TouchableOpacity
+                        style={styles.viewBtn}
+                        onPress={() => navigation.navigate('Requests')}
+                    >
+                        <Text style={styles.viewBtnText}>View All Requests</Text>
+                    </TouchableOpacity>
                 </>
             )}
         </ScrollView>
@@ -98,20 +88,12 @@ const styles = StyleSheet.create({
     },
     statValue: { fontSize: 24, fontWeight: 'bold', marginTop: 8, color: '#1f2937' },
     statLabel: { fontSize: 12, color: '#6b7280', marginTop: 4 },
-    sectionTitle: { fontSize: 18, fontWeight: '600', marginBottom: 12, color: '#1f2937' },
-    actionsGrid: { flexDirection: 'row', justifyContent: 'space-between' },
-    actionCard: {
-        width: '48%',
-        backgroundColor: 'white',
-        borderRadius: 12,
-        padding: 16,
+    viewBtn: {
+        backgroundColor: '#3b82f6',
+        paddingVertical: 12,
+        borderRadius: 8,
         alignItems: 'center',
-        marginBottom: 12,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 2,
-        elevation: 1,
+        marginTop: 16,
     },
-    actionLabel: { fontSize: 14, fontWeight: '500', marginTop: 8, color: '#374151' },
+    viewBtnText: { color: 'white', fontWeight: 'bold', fontSize: 16 },
 });
