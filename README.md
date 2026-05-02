@@ -4,9 +4,9 @@ A comprehensive hospital management system with role-based dashboards, AI-powere
 
 Mobile client built with React Native (Expo) and backend with Node.js + Express, MongoDB, and a separate AI microservice for dermoscopic image analysis.
 
+**GitHub Repository:** https://github.com/kokulanK/hospital-management-system-APP-New
 **Live Backend:** https://hospital-backend-myqc.onrender.com/api  
-**AI Service:** Deployed on Hugging Face (see details below) – provides skin image analysis with a Gatekeeper + Classifier.
-
+**AI Service:** https://kokulan123-skin-lesion-api.hf.space – Deployed on Hugging Face (see details below) – provides skin image analysis with a Gatekeeper + Classifier.
 ---
 
 # 📸 Screenshots
