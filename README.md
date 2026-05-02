@@ -411,14 +411,14 @@ Deploy FastAPI app to Hugging Face Spaces.
 
 # ❤️ Team
 
-| Student ID | Name                       |
-|------------|----------------------------|
-| IT24103078 | Liyanaarachchi K L A D B   |
-| IT24100701 | Louis E S                  |
-| IT24100060 | Kokulan K                  |
-| IT24102228 | Welgama W N Y              |
-| IT24101873 | Jesmeen M B A              |
-| IT24101546 | De Silva G H T D           |
+| Student ID | Name                     | Responsibility            |
+| ---------- | ------------------------ | ------------------------- |
+| IT24103078 | Liyanaarachchi K L A D B | Admin Management          |
+| IT24100701 | Louis E S                | Receptionist Management   |
+| IT24100060 | Kokulan K                | Patient Management        |
+| IT24102228 | Welgama W N Y            | Lab Technician Management |
+| IT24101873 | Jesmeen M B A            | Doctor Management         |
+| IT24101546 | De Silva G H T D         | Clean Staff Management    |
 
 ---
 
