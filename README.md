@@ -9,6 +9,7 @@ Mobile client built with React Native (Expo) and backend with Node.js + Express,
 **Live Backend:** https://hospital-backend-myqc.onrender.com/api  
 
 **AI Service:** https://kokulan123-skin-lesion-api.hf.space – Deployed on Hugging Face (see details below) – provides skin image analysis with a Gatekeeper + Classifier.
+
 ---
 
 # 📸 Screenshots
