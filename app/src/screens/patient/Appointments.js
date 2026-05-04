@@ -4,10 +4,10 @@ import {
   StyleSheet, ActivityIndicator, ScrollView, TextInput
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import api from '../../../../Final_app/src/api/axios';
-import { formatDate, formatTime } from '../../../../Final_app/src/utils/helpers';
+import api from '../../api/axios';
+import { formatDate, formatTime } from '../../utils/helpers';
 import { Ionicons } from '@expo/vector-icons';
-import { useLanguage } from '../../../../Final_app/src/contexts/LanguageContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function Appointments() {
   const { t } = useLanguage();
@@ -33,6 +33,15 @@ export default function Appointments() {
   const [rescheduleNewSlot, setRescheduleNewSlot] = useState(null);
   const [availableSlotsForReschedule, setAvailableSlotsForReschedule] = useState([]);
   const [loadingRescheduleSlots, setLoadingRescheduleSlots] = useState(false);
+
+  // Live countdown state
+  const [currentTime, setCurrentTime] = useState(Date.now());
+
+  // Update every second
+  useEffect(() => {
+    const interval = setInterval(() => setCurrentTime(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     fetchDoctors();
@@ -124,6 +133,26 @@ export default function Appointments() {
     } catch (err) {
       setBookingMessage('error:' + (err.response?.data?.message || t.appointments?.bookingFailed || 'Booking failed.'));
     }
+  };
+
+  // Format countdown string (same as web)
+  const formatCountdown = (targetTime) => {
+    const diff = targetTime - currentTime;
+    if (diff <= 0) return 'Now';
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    if (days > 0) {
+      return `${days}d ${hours.toString().padStart(2, '0')}:${minutes
+        .toString()
+        .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    return `${hours.toString().padStart(2, '0')}:${minutes
+      .toString()
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
   const upcomingAppointments = appointments
@@ -265,7 +294,7 @@ export default function Appointments() {
       )}
 
       {bookingMode ? (
-        // BOOKING MODE
+        // BOOKING MODE (unchanged)
         <>
           <View style={styles.searchCard}>
             <Text style={styles.sectionTitle}>{t.appointments?.findDoctor || 'Find a Doctor'}</Text>
@@ -378,33 +407,73 @@ export default function Appointments() {
                 </TouchableOpacity>
               </View>
             ) : (
-              upcomingAppointments.map((app) => (
-                <View key={app._id} style={styles.appointmentCard}>
-                  <View style={styles.appointmentHeader}>
-                    <View style={styles.appointmentAvatar}>
-                      <Text style={styles.appointmentInitial}>{app.doctor?.name?.[0]?.toUpperCase() || 'D'}</Text>
+              upcomingAppointments.map((app) => {
+                const appointmentTime = new Date(app.date).getTime();
+                const editDeadline = appointmentTime - 24 * 60 * 60 * 1000;
+                const canReschedule = editDeadline > currentTime;
+
+                return (
+                  <View key={app._id} style={styles.appointmentCard}>
+                    <View style={styles.appointmentHeader}>
+                      <View style={styles.appointmentAvatar}>
+                        <Text style={styles.appointmentInitial}>{app.doctor?.name?.[0]?.toUpperCase() || 'D'}</Text>
+                      </View>
+                      <View style={styles.appointmentInfo}>
+                        <Text style={styles.appointmentDoctor}>Dr. {app.doctor?.name}</Text>
+                        <Text style={styles.appointmentDate}>{formatDate(app.date)}</Text>
+                        <Text style={styles.appointmentTime}>{formatTime(app.date)}</Text>
+                      </View>
+                      <View style={styles.upcomingBadge}>
+                        <Text style={styles.upcomingBadgeText}>{t.appointments?.upcoming || 'Upcoming'}</Text>
+                      </View>
                     </View>
-                    <View style={styles.appointmentInfo}>
-                      <Text style={styles.appointmentDoctor}>Dr. {app.doctor?.name}</Text>
-                      <Text style={styles.appointmentDate}>{formatDate(app.date)}</Text>
-                      <Text style={styles.appointmentTime}>{formatTime(app.date)}</Text>
+
+                    {/* Countdown Timers */}
+                    <View style={styles.countdownContainer}>
+                      <View style={styles.countdownPill}>
+                        <Ionicons name="time-outline" size={12} color="#3b82f6" />
+                        <Text style={styles.countdownLabel}>Appointment in:</Text>
+                        <Text style={[styles.countdownValue, { color: '#1e3a8a' }]}>
+                          {appointmentTime > currentTime
+                            ? formatCountdown(appointmentTime)
+                            : 'Started'}
+                        </Text>
+                      </View>
+                      <View style={[styles.countdownPill, { backgroundColor: '#fffbeb' }]}>
+                        <Ionicons name="time-outline" size={12} color="#d97706" />
+                        <Text style={styles.countdownLabel}>Reschedule window:</Text>
+                        <Text style={[styles.countdownValue, { color: '#b45309' }]}>
+                          {canReschedule ? formatCountdown(editDeadline) + ' left' : 'Locked'}
+                        </Text>
+                      </View>
                     </View>
-                    <View style={styles.upcomingBadge}>
-                      <Text style={styles.upcomingBadgeText}>{t.appointments?.upcoming || 'Upcoming'}</Text>
+
+                    <View style={styles.appointmentActions}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          if (canReschedule) {
+                            handleReschedule(app);
+                          } else {
+                            Alert.alert(
+                              'Cannot Reschedule',
+                              'You cannot reschedule within 24 hours of the appointment.'
+                            );
+                          }
+                        }}
+                        style={[styles.rescheduleBtn, !canReschedule && styles.disabledBtn]}
+                        disabled={!canReschedule}
+                      >
+                        <Ionicons name="create-outline" size={16} color={canReschedule ? "#3b82f6" : "#9ca3af"} />
+                        <Text style={[styles.rescheduleText, !canReschedule && styles.disabledBtnText]}>{t.appointments?.reschedule || 'Reschedule'}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => handleCancel(app._id)} style={styles.cancelBtn}>
+                        <Ionicons name="trash-outline" size={16} color="#ef4444" />
+                        <Text style={styles.cancelText}>{t.appointments?.cancelAppointment || 'Cancel'}</Text>
+                      </TouchableOpacity>
                     </View>
                   </View>
-                  <View style={styles.appointmentActions}>
-                    <TouchableOpacity onPress={() => handleReschedule(app)} style={styles.rescheduleBtn}>
-                      <Ionicons name="create-outline" size={16} color="#3b82f6" />
-                      <Text style={styles.rescheduleText}>{t.appointments?.reschedule || 'Reschedule'}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleCancel(app._id)} style={styles.cancelBtn}>
-                      <Ionicons name="trash-outline" size={16} color="#ef4444" />
-                      <Text style={styles.cancelText}>{t.appointments?.cancelAppointment || 'Cancel'}</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))
+                );
+              })
             )}
           </View>
 
@@ -434,7 +503,7 @@ export default function Appointments() {
         </>
       )}
 
-      {/* Confirmation Modal */}
+      {/* Confirmation Modal (unchanged) */}
       <Modal visible={!!confirmation} transparent animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
@@ -457,7 +526,7 @@ export default function Appointments() {
         </View>
       </Modal>
 
-      {/* Reschedule Modal */}
+      {/* Reschedule Modal (unchanged) */}
       <Modal visible={!!rescheduling} transparent animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
@@ -584,11 +653,17 @@ const styles = StyleSheet.create({
   upcomingBadgeText: { fontSize: 10, color: '#065f46', fontWeight: 'bold' },
   completedBadge: { backgroundColor: '#f3f4f6', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 20 },
   completedBadgeText: { fontSize: 10, color: '#6b7280', fontWeight: 'bold' },
-  appointmentActions: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 12, gap: 16 },
+  countdownContainer: { marginTop: 12, marginBottom: 8, gap: 8 },
+  countdownPill: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: '#eff6ff', paddingHorizontal: 10, paddingVertical: 6, borderRadius: 20, flexWrap: 'wrap' },
+  countdownLabel: { fontSize: 11, color: '#4b5563' },
+  countdownValue: { fontSize: 11, fontFamily: 'monospace', fontWeight: 'bold' },
+  appointmentActions: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 8, gap: 16 },
   rescheduleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  rescheduleText: { color: '#3b82f6', fontSize: 12 },
   cancelBtn: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  rescheduleText: { color: '#3b82f6', fontSize: 12 },
   cancelText: { color: '#ef4444', fontSize: 12 },
+  disabledBtn: { opacity: 0.5 },
+  disabledBtnText: { color: '#9ca3af' },
   bookNowLink: { marginTop: 8, color: '#3b82f6', fontWeight: 'bold' },
   errorCard: { backgroundColor: '#fee2e2', padding: 16, borderRadius: 8, marginBottom: 16 },
   errorText: { color: '#b91c1c' },
